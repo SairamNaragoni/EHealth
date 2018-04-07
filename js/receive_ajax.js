@@ -19,7 +19,9 @@ function receiveUserRequest(){
 				}
 				else
 				{
-					$('#user_info').html("<p>Username : "+response[0].username+"</p><p> Phone : " + response[0].phone + "</p>");
+					$('#user_info').html("<label class='col-sm-3 control-label col-lg-3'>Name Of the Patient :</label>"+response[0].username+
+						"<br><label class='col-sm-3 control-label col-lg-3'>Phone Of the Patient :</label>" + response[0].phone +
+						"<br><button class='btn btn-danger' id='destRec'>Destination Reached</button>");
 					clearInterval(interval);
 				}
 		},
@@ -47,3 +49,18 @@ function updateLocation(){
 		}
 	});
 }
+
+$(document).on('click',"#destRec",function(){
+	var dr_id = $('#dr_id').val();
+	$.ajax({
+		url: "ajax/destRec.php",
+		method : "post",
+		data: '&dr_id='+dr_id,
+		success: function(response){
+			alert("Ride Successfull");
+		},
+		error : function(jqXHR,textStatus,errorThrown){
+			console.log(textStatus,errorThrown);
+		}
+	});
+});
