@@ -251,7 +251,7 @@
 <?php include('includes/connection.php');
 		if(isset($_GET['hid']))
 		{
-			$hid = $_GET['hid'];
+			$hid = "'".$_GET['hid']."'";
 			$query = "SELECT * FROM `doctor` WHERE hid = $hid";
 			$result = mysqli_query($conn,$query);
 			$rows = mysqli_num_rows($result);
@@ -313,12 +313,8 @@
           	<?php endwhile; ?>
           <?php else : ?>
           	<tr>
-            <td><a href="">Elodia</a></td>
-            <td>Heart Surgeon</td>
-            <td>2 pm</td>
-            <td>7 pm</td>
-            <td><a href="book.php?did=1">Book Appointment</a></td>
-          </tr>
+            <td class="view-message dont-show">No Doctors registered in the hospital</td>
+            </tr>
           <?php endif; ?> 
         </tbody>
       </table>
