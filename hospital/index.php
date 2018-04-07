@@ -19,7 +19,7 @@
                             if ($hashedPassword == $row['hpassword']) {
                                 session_start();
                                 $_SESSION['h_id'] = $row['h_id'];
-                                header("Location: home.php");
+                                header("Location: profile.php");
 
                             } else {                            
                                 $error = "That email/password combination could not be found.";                            
@@ -39,7 +39,7 @@
         session_start();
         if(isset($_SESSION['h_id']))
         {
-            header("Location: home.php");
+            header("Location: profile.php");
         }
  ?>
 <!DOCTYPE html>

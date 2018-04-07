@@ -124,12 +124,6 @@
         <!-- sidebar menu start-->
         <div class="leftside-navigation">
             <ul class="sidebar-menu" id="nav-accordion">
-                <li>
-                    <a class="active" href="home.php">
-                        <i class="fa fa-dashboard"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
                 
                 <li class="sub-menu">
                     <a href="javascript:;">
