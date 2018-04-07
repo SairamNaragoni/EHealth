@@ -66,7 +66,5 @@
 	            echo '<p>Vehicle No :'.$row['vehicle_no'].' </p>';
 	            echo '<p>Phone No :'.$user_row['phone'].' </p>';
 			echo "<p>Driver On the Way</p>";
-		}
-		
-		
+		}	
  ?>
