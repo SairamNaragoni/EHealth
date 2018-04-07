@@ -10,7 +10,7 @@ function mailUser($email,$hash)
     $to=$email;
     $subject="Your confirmation link is here :";
     $header="From:";
-    $message="Click the link below to activate your account\n\n http://localhost/EHealthC/confirmMail.php?email=$email&hash=$hash";
+    $message="Click the link below to activate your account\n\n http://localhost/EHealth/confirmMail.php?email=$email&hash=$hash";
     $sentmail = mail($to,$subject,$message,$header);
     if($sentmail){
         $error = "Your Activation link Has Been Sent To Your Email Address.";

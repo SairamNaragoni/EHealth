@@ -134,7 +134,7 @@
             '</div>'+
             '<h1 id="firstHeading" class="firstHeading">' + place.name + '</h1>'+
             '<div id="bodyContent">'+
-            '<a href="http://localhost/EHealthC/book.php?hid=' + place.place_id + '">'+
+            '<a href="http://localhost/EHealth/book.php?hid=' + place.place_id + '">'+
             'Click here to </a> '+
             '</p>'+
             '</div>'+
