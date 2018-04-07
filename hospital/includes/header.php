@@ -1,11 +1,11 @@
 <?php
         session_start();
-        if(!isset($_SESSION['uid']))
+        if(!isset($_SESSION['h_id']))
         {
             header("Location: index.php");
         }
  ?>
-<?php include("includes/connection.php"); ?>
+ <?php include("includes/connection.php"); ?>
 <!DOCTYPE html>
 <head>
 <title>E-Health Care</title>
@@ -27,13 +27,17 @@
 <link rel="stylesheet" href="css/morris.css" type="text/css"/>
 <!-- calendar -->
 <link rel="stylesheet" href="css/monthly.css">
-<link rel="stylesheet" href="css/bootstrap.css">
-<link rel="stylesheet" href="css/custom.css">
 <!-- //calendar -->
+<link rel="stylesheet" href="css/style2.css">
+    <link href="css/wickedpicker.css" rel="stylesheet" type='text/css' media="all" />
 <!-- //font-awesome icons -->
 <script src="js/jquery2.0.3.min.js"></script>
 <script src="js/raphael-min.js"></script>
 <script src="js/morris.js"></script>
+<script type="text/javascript" src="js/wickedpicker.js"></script>
+<script type="text/javascript">
+    $('.timepicker').wickedpicker({twentyFour: false});
+</script>
 </head>
 <body>
 <section id="container">
@@ -53,7 +57,6 @@
         <!-- notification dropdown start-->
         <li id="header_notification_bar" class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-
                 <i class="fa fa-bell-o"></i>
                 <span class="badge bg-warning">3</span>
             </a>
@@ -90,16 +93,17 @@
             <input type="text" class="form-control search" placeholder=" Search">
         </li>
         <?php 
-            $uid = $_SESSION['uid'];
-            $query = "SELECT * FROM users WHERE id={$uid}";
+            $h_id = $_SESSION['h_id'];
+            $query = "SELECT * FROM hospital WHERE h_id='{$h_id}'";
             $result = mysqli_query($conn,$query);
             $row = mysqli_fetch_assoc($result);
+            echo mysqli_error($conn);
         ?>
         <!-- user login dropdown start-->
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <img alt="" src="images/avatars/<?php echo $row['avatar']?>" width='30px' height='30px'>
-                <span class="username"><?php echo $row['username']?></span>
+                <img alt="" src="../images/3.png" width='30px' height='30px'>
+                <span class="name"><?php echo $row['hname']?></span>
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu extended logout">
@@ -108,6 +112,7 @@
             </ul>
         </li>
         <!-- user login dropdown end -->
+       
     </ul>
     <!--search & user info end-->
 </div>
@@ -133,22 +138,24 @@
                     </a>
                     <ul class="sub">
 						<li><a href="appointments.php?type=0">Previous Appointments</a></li>
-						<li><a href="appointments.php?type=1">Pending Appointments</a></li>
-                        <?php if(!isset($_SESSION['did'])) : ?>
-                            <li><a href="map.php">Book Appointment</a></li>
-                        <?php endif; ?>
-                        
+                        <li><a href="appointments.php?type=1">Customer Data</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;">
-                        <i class="fa fa-bullhorn"></i>
-                        <span>Emergency</span>
+                        <i class="fa fa-book"></i>
+                        <span>Doctors</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="emergency.php?forme=1">For Me</a></li>
-                        <li><a href="emergency.php?forme=0">For Other</a></li>
+                        <li><a href="doctors.php?type=0">Pending Doctor Approvals</a></li>
+                        <li><a href="doctors.php?type=1">All Doctors</a></li>
                     </ul>
+                </li>
+                <li>
+                    <a href="blood.php">
+                        <i class="fa fa-bullhorn"></i>
+                        <span>Blood Drive</span>
+                    </a>
                 </li>
                 <li>
                     <a href="events.php">
@@ -161,17 +168,9 @@
                         <i class="fa fa-bullhorn"></i>
                         <span>Profile</span>
                     </a>
-                </li>
-                <?php if(isset($_SESSION['drid'])) : ?>
-                    <li>
-                        <a href="receive.php">
-                            <i class="fa fa-bullhorn"></i>
-                            <span>Receive</span>
-                        </a>
-                    </li>
-                <?php endif; ?>
+                </li> 
                 <li>
-                    <a href="signout.php">
+                    <a href="../signout.php">
                         <i class="fa fa-user"></i>
                         <span>Sign Out</span>
                     </a>
