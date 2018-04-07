@@ -2,7 +2,9 @@ var interval = null;
 $(document).on('ready',function(){
     interval = setInterval(updateResponse,1000);
 });
-
+function startTimer(){
+	alert(1);
+}
 function updateResponse(){
 	var last_id = $('#emer_id').val();
 	$.ajax({
