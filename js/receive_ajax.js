@@ -4,7 +4,19 @@ $(document).on('ready',function(){
     interval = setInterval(receiveUserRequest,1000);
     locaInterval = setInterval(updateLocation,1000);
 });
+function createUserMarker(place) {
+	var mark = new google.maps.Marker({
+		map: map,
+		position: new google.maps.LatLng(place.lat, place.lng)
+	});
+	google.maps.event.addListener(mark, 'click', function() {
 
+		infowindow.setContent("contentString");
+		infowindow.open(map, this);
+	});
+	console.log(place.lat);
+	// markers.push(mark);
+}
 function receiveUserRequest(){
 	var dr_id = $('#dr_id').val();
 	$.ajax({
@@ -22,7 +34,10 @@ function receiveUserRequest(){
 					$('#user_info').html("<label class='col-sm-3 control-label col-lg-3'>Name Of the Patient :</label>"+response[0].username+
 						"<br><label class='col-sm-3 control-label col-lg-3'>Phone Of the Patient :</label>" + response[0].phone +
 						"<br><button class='btn btn-danger' id='destRec'>Destination Reached</button>");
+					if (enabled == 1) {
+						createUserMarker(response[0]);
 					clearInterval(interval);
+					}
 				}
 		},
 		error : function(jqXHR,textStatus,errorThrown){
@@ -33,6 +48,7 @@ function receiveUserRequest(){
 
 function updateLocation(){
 	var dr_id = $('#dr_id').val();
+	var lat1,lng1;
 	navigator.geolocation.getCurrentPosition(function(position)
     {
         lat1 = position.coords.latitude;
