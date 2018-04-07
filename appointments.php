@@ -59,7 +59,13 @@
 		                                    <td class="view-message dont-show" ><?php echo $row['phone']?></td>
 		                                    <td class="view-message dont-show" ><?php echo $row['date']?></td>
 		                                    <td class="view-message dont-show" ><?php echo $row['approved_time']?></td>
-		                                    <td class="view-message view-message"><a href="report.php?a_id=<?php echo $row['aid']?>" id="approve">View Report</a></td>
+		                                    <?php if(isset($_SESSION['did'])): ?>
+				                            <td class="view-message dont-show" ><?php echo $row['approved_time']?></td>
+		                                    <td class="view-message view-message"><a href="report.php?a_id=<?php echo $row['aid']?>" id="upload_report">Upload Report</a>
+		                                    <?php else: ?>
+		                                    	<td class="view-message view-message"><a href="report.php?a_id=<?php echo $row['aid']?>" id="view_report">View Report</a></td>
+				                        	<?php endif; ?>
+		                                    
 		                                </tr>    
 		                            <?php }}
 		                            else { ?>
@@ -119,9 +125,9 @@
                                     <td class="view-message dont-show" ><?php echo $row['date']?></td>
                                     <?php if(isset($_SESSION['did'])): ?>
 		                            <td class="view-message dont-show" ><?php echo $row['approved_time']?></td>
-                                    <td class="view-message view-message"><a href="report.php?a_id=<?php echo $row['aid']?>" id="approve">View Report</a>
+                                    <td class="view-message view-message"><a href="" id="approve">Approve</a></td>
+                                    <input type="hidden" name="">
 		                        	<?php endif; ?>
-                                    </td>
                                 </tr>    
                             <?php }}
                             else { ?>
@@ -140,4 +146,5 @@
 		<?php endif; ?>
         </div>
         <?php include('includes/footer.php') ?>
+        <script type="text/javascript" src="js/appointments_ajax.js"></script>
 </section>
