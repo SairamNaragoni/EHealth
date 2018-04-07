@@ -23,6 +23,7 @@
 				{
 					$last_id = mysqli_insert_id($conn);
 					$message = "The Nearest Ambulance has been succesfully notifed.Waiting For Response";
+                    $get_dr = 1;
 				}
             }
 			
@@ -33,6 +34,10 @@
     <section class="wrapper" style="margin-top: 0px;">
         <div class="typo-agile">
         	<div class="grid_3 grid_4 w3layouts">
+                <?php if(isset($get_dr)): ?>
+                <button onclick="startTimer();" id="getdata">Click</button>
+                <script type="text/javascript"> $('#getdata').trigger('click'); </script>
+                <?php endif; ?>
                 <h3 class="hdg">Notify Nearest Ambulance</h3>
                 <h4><?php echo $message; ?></h4>
                 <input type="hidden" name="emer_id" id="emer_id" value="<?php echo $last_id; ?>">
