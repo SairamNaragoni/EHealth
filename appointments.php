@@ -96,8 +96,10 @@
                             <th>Reason</th>
                             <th>Customer No</th>
                             <th>Date</th>
+                            <?php if(isset($_SESSION['did'])): ?>
                             <th>Time</th>
                             <th>View Report</th>
+                        	<?php endif; ?>
                     <tbody>
                             <?php
                             $i=0;
@@ -115,8 +117,11 @@
                                     <td class="view-message dont-show" ><?php echo $row['reason']?></td>
                                     <td class="view-message dont-show" ><?php echo $row['phone']?></td>
                                     <td class="view-message dont-show" ><?php echo $row['date']?></td>
-                                    <td class="view-message dont-show" ><?php echo $row['approved_time']?></td>
-                                    <td class="view-message view-message"><a href="report.php?a_id=<?php echo $row['aid']?>" id="approve">View Report</a></td>
+                                    <?php if(isset($_SESSION['did'])): ?>
+		                            <td class="view-message dont-show" ><?php echo $row['approved_time']?></td>
+                                    <td class="view-message view-message"><a href="report.php?a_id=<?php echo $row['aid']?>" id="approve">View Report</a>
+		                        	<?php endif; ?>
+                                    </td>
                                 </tr>    
                             <?php }}
                             else { ?>
