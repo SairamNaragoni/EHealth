@@ -4,6 +4,7 @@
         {
             header("Location: index.php");
         }
+
  ?>
 <?php include("includes/connection.php"); ?>
 <!DOCTYPE html>
@@ -34,6 +35,41 @@
 <script src="js/jquery2.0.3.min.js"></script>
 <script src="js/raphael-min.js"></script>
 <script src="js/morris.js"></script>
+<script type="text/javascript">
+
+
+
+    $(document).ready(function()
+    {
+         function load_unseen_notification(view = '')
+         { 
+           $.ajax({
+           url:"fetch.php",
+           method:"POST",
+           data:{view:view},
+           dataType:"json",
+           success:function(data)
+            {
+                $('#result').html(data.notification);
+                if(data.unseen_notification > 0)
+                {
+                 $('.count').html(data.unseen_notification);
+                }
+            }
+          });
+    }
+   load_unseen_notification();
+ $(document).on('click', '.dropdown-toggle', function(){
+ $('.count').html('');
+ load_unseen_notification('yes');
+ });
+
+ setInterval(function(){ 
+  load_unseen_notification();
+ }, 5000);
+
+});
+</script>
 </head>
 <body>
 <section id="container">
@@ -52,31 +88,19 @@
     <ul class="nav top-menu">
         <!-- notification dropdown start-->
         <li id="header_notification_bar" class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+            <a data-toggle="dropdown" class="dropdown-toggle" id="dropdownMenuButton" href="#">
 
                 <i class="fa fa-bell-o"></i>
-                <span class="badge bg-warning">3</span>
+                <span class="badge bg-warning count"></span>
             </a>
-            <ul class="dropdown-menu extended notification">
+            <ul class="dropdown-menu extended notification drop">
                 <li>
                     <p>Notifications</p>
                 </li>
-                <li>
-                    <div class="alert alert-info clearfix">
-                        <span class="alert-icon"><i class="fa fa-bolt"></i></span>
-                        <div class="noti-info">
-                            <a href="#"> Server #1 overloaded.</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="alert alert-danger clearfix">
-                        <span class="alert-icon"><i class="fa fa-bolt"></i></span>
-                        <div class="noti-info">
-                            <a href="#"> Server #2 overloaded.</a>
-                        </div>
-                    </div>
-                </li>
+                <div id="result">
+
+                </div>
+               
             </ul>
         </li>
         <!-- notification dropdown end -->
@@ -170,6 +194,12 @@
                         </a>
                     </li>
                 <?php endif; ?>
+                <li>
+                    <a href="allnotifications.php">
+                        <i class="fa fa-user"></i>
+                        <span>All Notifications</span>
+                    </a>
+                </li>
                 <li>
                     <a href="signout.php">
                         <i class="fa fa-user"></i>
