@@ -7,7 +7,7 @@
 	$uid = $row['uid'];
 	$uquery = "SELECT * FROM `users` WHERE id = $uid ";
 	$uresult = mysqli_query($conn,$uquery);
-	$urow = mysqli_fetch_array($ruesult);
+	$urow = mysqli_fetch_array($uresult);
 	$emer1 = $urow['emer1'];
 	$emer2 = $urow['emer2'];
 	//sms those two members
