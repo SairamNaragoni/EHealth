@@ -89,9 +89,6 @@
 <div class="top-nav clearfix">
     <!--search & user info start-->
     <ul class="nav pull-right top-menu">
-        <li>
-            <input type="text" class="form-control search" placeholder=" Search">
-        </li>
         <?php 
             $h_id = $_SESSION['h_id'];
             $query = "SELECT * FROM hospital WHERE h_id='{$h_id}'";
@@ -102,13 +99,12 @@
         <!-- user login dropdown start-->
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <img alt="" src="../images/3.png" width='30px' height='30px'>
                 <span class="name"><?php echo $row['hname']?></span>
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu extended logout">
                 <li><a href="profile.php"><i class=" fa fa-suitcase"></i>Profile</a></li>
-                <li><a href="signout.php"><i class="fa fa-key"></i> Log Out</a></li>
+                <li><a href="../signout.php"><i class="fa fa-key"></i> Log Out</a></li>
             </ul>
         </li>
         <!-- user login dropdown end -->
