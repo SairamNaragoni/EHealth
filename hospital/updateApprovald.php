@@ -1,10 +1,10 @@
 <?php include('../includes/connection.php');
         session_start();
-		$aid = $_POST['aid'];
-		$query = "UPDATE `appointments` SET approval = 1 WHERE aid=$aid";
+		$did = $_POST['did'];
+		$query = "UPDATE `doctor` SET dapproved = 1 WHERE did=$did";
 		mysqli_query($conn,$query);
-         echo $_SESSION['uid'];
         //sending notifications to user
+        /*
         $query1 = "SELECT `uid` FROM `appointments` WHERE `aid` = '".$aid."'";
         $res = mysqli_query($conn,$query1);
         $row = mysqli_fetch_array($res);
@@ -12,5 +12,5 @@
         if(!mysqli_query($conn,$notify))
         {
         	echo "failed";
-        }
+        }*/
  ?>

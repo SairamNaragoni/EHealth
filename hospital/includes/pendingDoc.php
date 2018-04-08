@@ -22,7 +22,8 @@
                                 <tr class="">
                                     <td class="inbox-small-cells">1</td>
                                     <td class="view-message dont-show" id="name"><?php echo $row['username']?></td>
-                                    <td class="view-message view-message"><a href="acceptDoc.php?d_id=<?php echo $row['did']?>" id="approve">Approve</a></td>
+                                    <td class="view-message view-message"><a href="" class="approve">Approve</a>
+                                    <input type="hidden" class="did" value="<?php echo $row['did'];?>" ></td>
                                 </tr>    
                             <?php }}
                             else { ?>

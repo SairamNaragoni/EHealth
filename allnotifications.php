@@ -131,9 +131,9 @@
 		</div>
 </section>
  <!-- footer -->
-		  <div class="footer">
+		   <div class="footer">
 			<div class="wthree-copyright">
-			  <p>© 2017 Visitors. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+			  <p>© 2018 EHEALTH CARE. All rights reserved | Design by <a href="https://github.com/SairamNaragoni/EHealth">Rogue Nation</a></p>
 			</div>
 		  </div>
   <!-- / footer -->
