@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2018 at 08:25 PM
+-- Generation Time: Apr 08, 2018 at 11:11 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -34,9 +34,15 @@ CREATE TABLE `appointments` (
   `did` int(11) NOT NULL,
   `date` date NOT NULL,
   `approval` int(11) NOT NULL DEFAULT '0',
-  `approved_time` time DEFAULT NULL,
   `reason` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `appointments`
+--
+
+INSERT INTO `appointments` (`aid`, `uid`, `did`, `date`, `approval`, `reason`) VALUES
+(6, 6, 1, '2018-04-03', 1, 'dsadasdas');
 
 -- --------------------------------------------------------
 
@@ -60,7 +66,7 @@ CREATE TABLE `doctor` (
 --
 
 INSERT INTO `doctor` (`did`, `uid`, `hid`, `license`, `specialArea`, `avail_from`, `avail_till`, `dapproved`) VALUES
-(1, 7, 'ChIJi2YJ4-xN4DsRw_SeyfTB4-M', '', 'Heart Surgeon', '17:05:00', '21:06:00', 0);
+(1, 7, 'ChIJi2YJ4-xN4DsRw_SeyfTB4-M', '', 'Heart Surgeon', '17:05:00', '21:06:00', 1);
 
 -- --------------------------------------------------------
 
@@ -97,16 +103,18 @@ CREATE TABLE `emergency` (
   `dr_id` int(11) DEFAULT NULL,
   `elat` double NOT NULL,
   `elng` double NOT NULL,
-  `approval` int(11) NOT NULL DEFAULT '0'
+  `approval` int(11) NOT NULL DEFAULT '0',
+  `hid` varchar(255) DEFAULT NULL,
+  `dest_reached` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `emergency`
 --
 
-INSERT INTO `emergency` (`emer_id`, `uid`, `dr_id`, `elat`, `elng`, `approval`) VALUES
-(37, 6, 3, 21.1648315, 72.786038, 1),
-(38, 7, 3, 21.1648315, 72.786038, 1);
+INSERT INTO `emergency` (`emer_id`, `uid`, `dr_id`, `elat`, `elng`, `approval`, `hid`, `dest_reached`) VALUES
+(37, 6, 3, 21.1648315, 72.786038, 1, NULL, 0),
+(38, 7, 3, 21.1648315, 72.786038, 1, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -119,7 +127,7 @@ CREATE TABLE `events` (
   `ename` varchar(255) NOT NULL,
   `edescription` text NOT NULL,
   `edate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `hid` int(11) NOT NULL
+  `hid` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -146,7 +154,8 @@ CREATE TABLE `hospital` (
 --
 
 INSERT INTO `hospital` (`h_id`, `hname`, `haddr`, `lat`, `lng`, `hmail`, `hpassword`, `hphone`, `hash`, `active`) VALUES
-('ChIJi2YJ4-xN4DsRw_SeyfTB4-M', 'Dispensary', 'Sardar Vallabhbhai Engineering College Rd, Athwalines, Athwa, Surat, Gujarat 395007, India', 21.1633812, 72.7827198, 'naragonisairam@gmail.com', '55c1a3293fdc293048f489b63e6663ac', '8790361236', '9f61408e3afb633e50cdf1b20de6f466', 1);
+('ChIJi2YJ4-xN4DsRw_SeyfTB4-M', 'Dispensary', 'Sardar Vallabhbhai Engineering College Rd, Athwalines, Athwa, Surat, Gujarat 395007, India', 21.1633812, 72.7827198, 'naragonisairam@gmail.com', '55c1a3293fdc293048f489b63e6663ac', '8790361236', '9f61408e3afb633e50cdf1b20de6f466', 1),
+('ChIJOyBI0L9N4DsRJwJs7GLTG8k', 'Umra Urban Health Center', 'Umra Gam, Athwa, Surat, Gujarat 395007, India', 21.1719715, 72.77828160000001, 'jay.bhairaviya@gmail.com', '2abbdd7a36df8fb31bac9ed33e8f4471', '8790361236', '0', 1);
 
 -- --------------------------------------------------------
 
@@ -163,6 +172,21 @@ CREATE TABLE `notifications` (
   `notify_read` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `notifications`
+--
+
+INSERT INTO `notifications` (`nid`, `uid`, `ntype`, `notified_by`, `notify_time`, `notify_read`) VALUES
+(9, 6, 'DR', '7', '2018-04-08 06:36:10', 1),
+(10, 4, 'EB', 'ChIJi2YJ4-xN4DsRw_SeyfTB4-M', '2018-04-08 07:03:32', 0),
+(11, 6, 'EB', 'ChIJi2YJ4-xN4DsRw_SeyfTB4-M', '2018-04-08 07:03:34', 1),
+(12, 4, 'EB', 'ChIJi2YJ4-xN4DsRw_SeyfTB4-M', '2018-04-08 07:18:29', 0),
+(13, 6, 'EB', 'ChIJi2YJ4-xN4DsRw_SeyfTB4-M', '2018-04-08 07:18:31', 0),
+(14, 4, 'EB', 'ChIJi2YJ4-xN4DsRw_SeyfTB4-M', '2018-04-08 07:20:12', 0),
+(15, 6, 'EB', 'ChIJi2YJ4-xN4DsRw_SeyfTB4-M', '2018-04-08 07:20:14', 0),
+(16, 4, 'EB', 'ChIJi2YJ4-xN4DsRw_SeyfTB4-M', '2018-04-08 07:21:06', 0),
+(17, 6, 'EB', 'ChIJi2YJ4-xN4DsRw_SeyfTB4-M', '2018-04-08 07:21:08', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -176,6 +200,14 @@ CREATE TABLE `report` (
   `report` varchar(255) NOT NULL,
   `prescription` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `report`
+--
+
+INSERT INTO `report` (`rid`, `aid`, `summary`, `report`, `prescription`) VALUES
+(8, 6, 'Hello world', '73154-kaneki.jpg', 'no more crystal meth'),
+(9, 6, 'Hello world', '80007-kaneki.jpg', 'no more crystal meth');
 
 -- --------------------------------------------------------
 
@@ -210,7 +242,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `phone`, `emer1`, `emer2`, `addr`, `dob`, `avatar`, `aadhar`, `hash`, `active`, `pincode`, `bloodgroup`, `medicalHis`, `infoUpdated`, `user_type`) VALUES
 (4, 'u15co025', 'jay.bhairaviya@gmail.com', '664a93755b5ce1cf54f99ae0f5ee7cf4', '8790361236', '8332977980', '8790361236', 'Enter Your Full Address', '2018-04-04', 'kaneki.jpg', 54, '0', 1, 515, 'B+', 'sdasdas', 1, 0),
-(6, 'u15co093', 'naragonisairam@gmail.com', '9e35c7182b1b412bc1c5c0890843f71e', '8460393423', '7989776326', '8332977980', 'Enter Your Full Address', '2018-04-07', 'sai.jpg', 2313123, '0', 1, 545, 'B+', 'Enter Your Previous Medical history', 1, 1),
+(6, 'u15co093', 'naragonisairam@gmail.com', '9e35c7182b1b412bc1c5c0890843f71e', '8332977980', '7989776326', '8332977980', 'Enter Your Full Address', '2018-04-07', 'sai.jpg', 2313123, '0', 1, 545, 'B+', 'Enter Your Previous Medical history', 1, 1),
 (7, 'u15co063', 'vatsavayi.sandeep@gmail.com', '6f2bbb6b510d9aece665cedefe6ad78f', '8332977980', '8790361236', '7989776326', 'H 29', '2018-04-07', 'sai.jpg', 2313123, '0', 1, 395007, 'A-', 'Nothing', 1, 2);
 
 --
@@ -279,7 +311,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `doctor`
 --
@@ -304,12 +336,12 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `nid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `nid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `report`
 --
 ALTER TABLE `report`
-  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `users`
 --
