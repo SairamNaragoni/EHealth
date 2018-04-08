@@ -60,7 +60,37 @@
 		                                    <td class="view-message dont-show" ><?php echo $row['date']?></td>
 		                                    <td class="view-message dont-show" ><?php echo $row['approved_time']?></td>
 		                                    <?php if(isset($_SESSION['did'])): ?>
-		                                    <td class="view-message view-message"><a href="report.php?a_id=<?php echo $row['aid']?>" id="send_report">Send Report</a>
+		                                   <!-- <td class="view-message view-message"><a href="report.php?a_id=<?php echo $row['aid']?>" id="send_report">Send Report</a>-->
+		                                    <td> <a href="#myModal" data-toggle="modal" class="btn btn-success">Submit Report</a></td>
+		                                    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+				                            <div class="modal-dialog">
+				                                <div class="modal-content">
+				                                    <div class="modal-header">
+				                                        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+				                                        <h4 class="modal-title">Report</h4>
+				                                    </div>
+				                                    <div class="modal-body">
+				                                        <form role="form" method="post" enctype="multipart/form-data" class="uform">
+				                                            <div class="form-group">
+				                                                <label for="summary">Summary</label>
+				                                                 <textarea class="form-control summary" rows="3" name="summary" required=""></textarea>
+				                                            </div>
+				                                            <div class="form-group">
+				                                               <label for="prescription">Prescription</label>
+				                                                 <textarea class="form-control prescription" rows="3" name="prescription" required=""></textarea>
+				                                            </div>
+				                                            <div class="form-group">
+				                                                <label for="inputReport">File Report input</label>
+				                                                <input type="file" id="file">
+				                                                <p class="help-block">Any external Input</p>
+				                                            </div>
+				                                            <input type="hidden" name="aid" class="aid" value="<?php echo $row['aid']; ?>">
+				                                            <button type="submit" class="btn btn-default reportSubmit" name="reportSubmit">Submit</button>
+				                                        </form>
+				                                    </div>
+				                                </div>
+				                            </div>
+                        					</div>
 		                                    <?php else: ?>
 		                                    	<td class="view-message view-message"><a href="report.php?a_id=<?php echo $row['aid']?>" id="view_report">View Report</a></td>
 				                        	<?php endif; ?>
@@ -146,4 +176,5 @@
         </div>
         <?php include('includes/footer.php') ?>
         <script type="text/javascript" src="js/appointments_ajax.js"></script>
+         <script type="text/javascript" src="js/submitReport.js"></script>
 </section>
