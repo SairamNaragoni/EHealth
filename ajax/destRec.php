@@ -16,9 +16,4 @@
 	//sms done
 	$uquery = "UPDATE `emergency` SET dest_reached = 1 WHERE dr_id = $dr_id";
 	mysqli_query($conn,$uquery);
-	// $uquery = "UPDATE `driver` SET avail = 1 WHERE dr_id = $dr_id";
-	// mysqli_query($conn,$uquery);
-	// $dquery = "DELETE FROM `emergency` WHERE dr_id = $dr_id ";
-	// $dresult = mysqli_query($conn,$dquery);
-	// $drow = mysqli_fetch_array($dresult);
 ?>
