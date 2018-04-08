@@ -92,7 +92,42 @@
 				                            </div>
                         					</div>
 		                                    <?php else: ?>
-		                                    	<td class="view-message view-message"><a href="report.php?a_id=<?php echo $row['aid']?>" id="view_report">View Report</a></td>
+		                                    	<!--<td class="view-message view-message"><a href="report.php?a_id=<?php echo $row['aid']?>" id="view_report">View Report</a></td>-->
+		                                    	<td> <a href="#myModal" data-toggle="modal" class="btn btn-success">View Report</a></td>
+		                                    	<?php 
+		                                    		$aidhere = $row['aid'];
+
+		                                    		$report_query = "SELECT * FROM `report` WHERE aid = $aidhere";
+		                                    		$report_result = mysqli_query($conn,$report_query);
+		                                    		$report_row = mysqli_fetch_array($report_result);
+		                                    		echo $report_row['report'];
+
+		                                    	 ?>
+		                                    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+				                            <div class="modal-dialog">
+				                                <div class="modal-content">
+				                                    <div class="modal-header">
+				                                        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+				                                        <h4 class="modal-title">Report</h4>
+				                                    </div>
+				                                    <div class="modal-body">
+				                                        <form role="form" method="post" enctype="multipart/form-data" class="uform">
+				                                            <div class="form-group">
+				                                                <label for="summary">Summary</label>
+				                                                 <textarea class="form-control summary" rows="3" name="summary" required=""><?php echo $report_row['summary']; ?></textarea>
+				                                            </div>
+				                                            <div class="form-group">
+				                                               <label for="prescription">Prescription</label>
+				                                                 <textarea class="form-control prescription" rows="3" name="prescription" required=""><?php echo $report_row['prescription']; ?></textarea>
+				                                            </div>
+				                                            <div>
+				                                                <a href="images/reports/<?php echo $report_row['report']; ?>" data-toggle="modal" class="btn btn-success" target = "_blank">View File </a></td>
+				                                            </div>
+				                                        </form>
+				                                    </div>
+				                                </div>
+				                            </div>
+                        					</div>
 				                        	<?php endif; ?>
 		                                    
 		                                </tr>    

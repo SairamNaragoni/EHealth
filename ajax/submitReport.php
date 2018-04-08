@@ -4,7 +4,7 @@
         $file_loc = $_FILES['file']['tmp_name'];
         $file_size = $_FILES['file']['size'];
         $file_type = $_FILES['file']['type'];
-        $folder="../images/reports";
+        $folder="../images/reports/";
         // new file size in KB
         $new_size = $file_size/1024; 
         // make file name in lower case
