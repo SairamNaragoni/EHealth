@@ -82,6 +82,7 @@
 				<input type="submit" value="Sign In" name="submit">
 		</form>
 		<p>Don't Have an Account ?<a href="signup.php">Create an account</a></p>
+        <p>Hospital owner?<a href="./hospital/">Hospital Login</a></p>
 </div>
 </div>
 <script src="js/bootstrap.js"></script>

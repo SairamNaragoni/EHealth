@@ -79,6 +79,7 @@
 				<input type="submit" value="Sign In" name="submit">
 		</form>
 		<p>Don't Have an Account ?<a href="signup.php">Create an account</a></p>
+        <p>Normal user?<a href="../">User Login</a></p>
 </div>
 </div>
 <script src="js/bootstrap.js"></script>
