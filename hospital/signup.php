@@ -10,7 +10,7 @@ function mailUser($email,$hash)
     $to=$email;
     $subject="Your confirmation link is here :";
     $header="From:";
-    $message="Click the link below to activate your account\n\n http://localhost/EHealth/confirmMail.php?email=$email&hash=$hash";
+    $message="Click the link below to activate your account\n\n http://localhost/EHealth/hospital/confirmMail.php?email=$email&hash=$hash";
     $sentmail = mail($to,$subject,$message,$header);
     if($sentmail){
         $error = "Your Activation link Has Been Sent To Your Email Address.";
@@ -218,7 +218,7 @@ if (array_key_exists("register", $_POST)) {
             '</div>'+
             '<h3 id="firstHeading" class="firstHeading">' + place.name + '</h1>'+
             '<div id="bodyContent">'+
-            '<a href="http://localhost/EHealthC/hospital/signup.php?hid=' + place.place_id + '">'+
+            '<a href="http://localhost/EHealth/hospital/signup.php?hid=' + place.place_id + '">'+
             'Click here to register this hospital</a> '+
             '</p>'+
             '</div>'+
