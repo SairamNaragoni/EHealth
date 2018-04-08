@@ -1,8 +1,8 @@
 var interval = null;
 var locaInterval = null;
 $(document).on('ready',function(){
-	interval = setInterval(receiveUserRequest,1000);
-	locaInterval = setInterval(updateLocation,1000);
+	interval = setInterval(receiveUserRequest,5000);
+	locaInterval = setInterval(updateLocation,10000);
 });
 function createUserMarker(place) {
 	userMarker = new google.maps.Marker({
