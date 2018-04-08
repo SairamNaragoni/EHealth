@@ -41,7 +41,7 @@
 		                            <th>Customer No</th>
 		                            <th>Date</th>
 		                            <th>Time</th>
-		                            <th>View Report</th>
+		                            <th><?php if(isset($_SESSION['did'])): ?>Upload <?php else: ?> View <?php endif;?> Report</th>
 		                    <tbody>
 		                            <?php  
 		                            while ($row = mysqli_fetch_assoc($result)) {                            
@@ -59,7 +59,12 @@
 		                                    <td class="view-message dont-show" ><?php echo $row['phone']?></td>
 		                                    <td class="view-message dont-show" ><?php echo $row['date']?></td>
 		                                    <td class="view-message dont-show" ><?php echo $row['approved_time']?></td>
-		                                    <td class="view-message view-message"><a href="report.php?a_id=<?php echo $row['aid']?>" id="approve">View Report</a></td>
+		                                    <?php if(isset($_SESSION['did'])): ?>
+		                                    <td class="view-message view-message"><a href="report.php?a_id=<?php echo $row['aid']?>" id="send_report">Send Report</a>
+		                                    <?php else: ?>
+		                                    	<td class="view-message view-message"><a href="report.php?a_id=<?php echo $row['aid']?>" id="view_report">View Report</a></td>
+				                        	<?php endif; ?>
+		                                    
 		                                </tr>    
 		                            <?php }}
 		                            else { ?>
@@ -119,9 +124,9 @@
                                     <td class="view-message dont-show" ><?php echo $row['date']?></td>
                                     <?php if(isset($_SESSION['did'])): ?>
 		                            <td class="view-message dont-show" ><?php echo $row['approved_time']?></td>
-                                    <td class="view-message view-message"><a href="report.php?a_id=<?php echo $row['aid']?>" id="approve">View Report</a>
+                                    <td class="view-message view-message"><a href="" id="approve">Approve</a></td>
+                                    <input type="hidden" class="aid" value="<?php echo $row['aid'];?>" >
 		                        	<?php endif; ?>
-                                    </td>
                                 </tr>    
                             <?php }}
                             else { ?>
@@ -140,4 +145,5 @@
 		<?php endif; ?>
         </div>
         <?php include('includes/footer.php') ?>
+        <script type="text/javascript" src="js/appointments_ajax.js"></script>
 </section>
