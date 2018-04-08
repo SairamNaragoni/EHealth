@@ -6,7 +6,6 @@
   $num_rows = mysqli_num_rows($result);
 ?>
 <?php 
-    
     function getHname($hid)
     {
       include('includes/connection.php');
@@ -70,8 +69,4 @@
 			<div class="clearfix"> </div>
 		</div>
 </section>
-
-
-
-
 <?php include('includes/footer.php') ?>
