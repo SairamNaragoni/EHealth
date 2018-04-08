@@ -23,9 +23,25 @@
 					<?php
                        while($row = mysqli_fetch_array($result))
                        {
-                       	 if($row['ntype']=="EB"){
-                            $msg = "Need Blood Urgently";
-                       	 }
+                       	 if($row['ntype']=="EB")
+                       	 {
+
+
+                       	 	$query1 = "SELECT * FROM `hospital` WHERE 	`h_id` = '".$row['notified_by']."' ";
+				        	$result1 = mysqli_query($conn,$query1);
+			                $error="ok";
+				        	$query2 = "SELECT `bloodgroup` FROM `users` WHERE id= '".$row['uid']."' ";
+				        	$result2 = mysqli_query($conn,$query2);
+				        	$row2 = mysqli_fetch_array($result2);
+
+				        	if($row1 = mysqli_fetch_array($result1))
+				        	{
+				        	$hospital_name = $row1['hname'];
+				        	$phno = $row1['hphone'];
+                            }
+
+                            $msg = 'Need' .$row2['bloodgroup'].'Blood Urgently<br/>Hospital:'.$hospital_name.'<br/>Contact: '.$phno.' ';
+                       	  
                        	 $date = date("F j,Y,g:i a",strtotime($row['notify_time']));
                        	 ?>
                            <div class="notify-w3ls">
@@ -36,12 +52,75 @@
 									<li class="pull-left notification-sender"><span><a href="#"><?php echo $msg ?></a></span> </li>
 									<li class="pull-right notification-time"><?php echo $date ?></li>
 								   </ul>
-										<p>Keep Something Here Sairam. Best of Luck.</p>
+										
 							     </div>
 						     </div>
 					       </div>
                        	 <?php
                        }
+                       elseif($row['ntype']=="DA")
+                       {
+                           $query1 = "SELECT * FROM `users` WHERE `id` = '".$row['notified_by']."' ";
+				                 $result1 = mysqli_query($conn,$query1);
+				                 if($row1 = mysqli_fetch_array($result1))
+					        	 {   
+					        		
+					        		$doctor = $row1['username'];
+					        		$phno = $row1['phone'];
+
+					        		$msg = 'Appointment Confirmed:<br/>Doctor:'.$doctor.'<br/>Phno.'.$phno.' ';
+
+					        		$date = date("F j,Y,g:i a",strtotime($row['notify_time']));
+                       	 ?>
+                           <div class="notify-w3ls">
+						     <div class="alert alert-info clearfix">
+							   <span class="alert-icon"><i class="fa fa-envelope-o"></i></span>
+							     <div class="notification-info">
+								   <ul class="clearfix notification-meta">
+									<li class="pull-left notification-sender"><span><a href="#"><?php echo $msg ?></a></span> </li>
+									<li class="pull-right notification-time"><?php echo $date ?></li>
+								   </ul>
+										
+							     </div>
+						     </div>
+					       </div>
+                       	 <?php
+	                     	}
+	        	
+                       }
+                       elseif($row['ntype']=="DR")
+                       {
+
+                          
+                            $query1 = "SELECT * FROM `users` WHERE `id` = '".$row['notified_by']."' ";
+				                 $result1 = mysqli_query($conn,$query1);
+				                 if($row1 = mysqli_fetch_array($result1))
+					        	 {   
+					        		
+					        		$doctor = $row1['username'];
+					        		$phno = $row1['phone'];
+
+					        		$msg = 'Report Sent:<br/>Doctor:'.$doctor.'<br/>Phno.'.$phno.' ';
+
+					        		$date = date("F j,Y,g:i a",strtotime($row['notify_time']));
+                       	 ?>
+                           <div class="notify-w3ls">
+						     <div class="alert alert-info clearfix">
+							   <span class="alert-icon"><i class="fa fa-envelope-o"></i></span>
+							     <div class="notification-info">
+								   <ul class="clearfix notification-meta">
+									<li class="pull-left notification-sender"><span><a href="#"><?php echo $msg ?></a></span> </li>
+									<li class="pull-right notification-time"><?php echo $date ?></li>
+								   </ul>
+										
+							     </div>
+						     </div>
+					       </div>
+                       	 <?php
+
+                       }
+                      }
+                  }
 					?>	
 			</div>
 				<!--notification end-->
