@@ -28,6 +28,7 @@
 	         if( !mysqli_query($conn,$insert_query))
 	         {
                  echo "Try Again Later";
+
 	         }
 	         else
 	         {
@@ -36,11 +37,12 @@
 	         	$res = sendWay2SMS($uid, $pwd, $phone, $msg);
 	            if (is_array($res))
 	             echo $res[0]['result'] ? 'Message sent successfully!!!' : 'Try Again Later !! Sorry';
-	            else
-	               echo $res;
-	               echo $msg;
+	           
+                 header('Location: blood.php?sent=1');
 	         }
 	     }
+
+       header('Location: blood.php?sent=1');
     }
     else
     {

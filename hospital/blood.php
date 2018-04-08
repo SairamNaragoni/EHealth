@@ -25,6 +25,16 @@
 					<input type="submit" value="Make a call">
 				</form>
 			</div>
+			<?php
+			if (isset($_GET['sent']) && $_GET['sent']==1) {
+		    ?>
+				<div class=" bg-agile btn btn-success"  style="margin:20px 80px 80px 140px;">All the People with Same Blood Group Notified.
+			    </div>
+			<?php
+			}
+			
+
+			?>
 		</div>
 	</section>
 </section>

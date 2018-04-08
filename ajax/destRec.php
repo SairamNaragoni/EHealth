@@ -40,14 +40,10 @@ include('way2sms_api.php');
 	if (is_array($res))
 	echo $res[0]['result'] ? 'Message sent successfully!!!' : 'Try Again Later !! Sorry';
 
-<<<<<<< HEAD
+
     $res = sendWay2SMS($uid, $pwd, $emer2, $msg);
 	if (is_array($res))
 	echo $res[0]['result'] ? 'Message sent successfully!!!' : 'Try Again Later !! Sorry';
 	
-=======
-	//sms done
-	$uquery = "UPDATE `emergency` SET dest_reached = 1 WHERE dr_id = $dr_id";
-	mysqli_query($conn,$uquery);
->>>>>>> origin/master
+
 ?>
