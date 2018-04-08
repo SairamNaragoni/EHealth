@@ -7,6 +7,10 @@ We were inspired by the hustle and bustle of everyday life where even a second m
 ## What It Does
 An Automated *Smart Health Care* Web Application built on php,ajax and basic web technologies .<br>
 The Application Offers the following features in *beta* .<br>
+> Emergency Services <br>
+> Online Appointment with the doctor of your choice <br>
+> Emergency Blood Requirement Request <br>
+> Doctor prescription and report submission after appointment online <br>
 
 ## How We Built It
 The Application uses the *GOOGLE MAPS API* for the location services<br>
