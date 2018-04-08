@@ -40,7 +40,6 @@
 		                            <th>Reason</th>
 		                            <th>Customer No</th>
 		                            <th>Date</th>
-		                            <th>Time</th>
 		                            <th><?php if(isset($_SESSION['did'])): ?>Upload <?php else: ?> View <?php endif;?> Report</th>
 		                    <tbody>
 		                            <?php  
@@ -58,7 +57,6 @@
 		                                    <td class="view-message dont-show" ><?php echo $row['reason']?></td>
 		                                    <td class="view-message dont-show" ><?php echo $row['phone']?></td>
 		                                    <td class="view-message dont-show" ><?php echo $row['date']?></td>
-		                                    <td class="view-message dont-show" ><?php echo $row['approved_time']?></td>
 		                                    <?php if(isset($_SESSION['did'])): ?>
 		                                   <!-- <td class="view-message view-message"><a href="report.php?a_id=<?php echo $row['aid']?>" id="send_report">Send Report</a>-->
 		                                    <td> <a href="#myModal" data-toggle="modal" class="btn btn-success">Submit Report</a></td>
@@ -92,16 +90,12 @@
 				                            </div>
                         					</div>
 		                                    <?php else: ?>
-		                                    	<!--<td class="view-message view-message"><a href="report.php?a_id=<?php echo $row['aid']?>" id="view_report">View Report</a></td>-->
 		                                    	<td> <a href="#myModal" data-toggle="modal" class="btn btn-success">View Report</a></td>
 		                                    	<?php 
 		                                    		$aidhere = $row['aid'];
-
 		                                    		$report_query = "SELECT * FROM `report` WHERE aid = $aidhere";
 		                                    		$report_result = mysqli_query($conn,$report_query);
 		                                    		$report_row = mysqli_fetch_array($report_result);
-		                                    		echo $report_row['report'];
-
 		                                    	 ?>
 		                                    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
 				                            <div class="modal-dialog">
@@ -167,7 +161,6 @@
                             <th>Customer No</th>
                             <th>Date</th>
                             <?php if(isset($_SESSION['did'])): ?>
-                            <th>Time</th>
                             <th>View Report</th>
                         	<?php endif; ?>
                     <tbody>
@@ -188,7 +181,6 @@
                                     <td class="view-message dont-show" ><?php echo $row['phone']?></td>
                                     <td class="view-message dont-show" ><?php echo $row['date']?></td>
                                     <?php if(isset($_SESSION['did'])): ?>
-		                            <td class="view-message dont-show" ><?php echo $row['approved_time']?></td>
                                     <td class="view-message view-message"><a href="" id="approve">Approve</a></td>
                                     <input type="hidden" class="aid" value="<?php echo $row['aid'];?>" >
 		                        	<?php endif; ?>
