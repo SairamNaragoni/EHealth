@@ -3,23 +3,14 @@
 <?php
   
   $hid = $_SESSION['h_id'];
-  
-  
   if(isset($_GET['event'])&&isset($_GET['description']))
   {
-       
        $query = "INSERT INTO `events` (`ename`,`edescription`,`hid`) VALUES ( '".$_GET['event']."' , '".$_GET['description']."' , '".$hid."')";
        $result = mysqli_query($conn,$query);
        if(!$result){
           echo "Query Failed";
        }
-       
-
-
   }
-
- 
-
 ?>
 <section id="main-content">
 	<section class="wrapper">

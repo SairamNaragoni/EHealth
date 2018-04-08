@@ -10,9 +10,9 @@
     function getHname($hid)
     {
       include('includes/connection.php');
-      $h_query = "SELECT * from hospital where h_id = $hid";
+      $h_query = "SELECT * from hospital where h_id= '$hid'";
       $h_result = mysqli_query($conn,$h_query);
-      $h_row = mysqli_fetch_array($h_result);
+      $h_row = mysqli_fetch_assoc($h_result);
       return $h_row['hname'];
     }
 ?>

@@ -57,7 +57,7 @@ $driver_id = $dr_row['dr_id'];
         myLoc = { lat: position.coords.latitude, lng: position.coords.longitude };
         map = new google.maps.Map(document.getElementById('map'), {
             center: myLoc,
-            zoom: 15,
+            zoom: 10,
             mapTypeId: 'roadmap'
         });
         directionsService = new google.maps.DirectionsService;
